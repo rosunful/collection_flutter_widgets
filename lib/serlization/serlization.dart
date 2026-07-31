@@ -9,33 +9,38 @@ class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState(); // Fixed state name convention
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  List<String> names = [
-    "Luffy",
-    "Gyaan",
-    "Suzuka",
-    "Perman",
-    "Nobita",
-    "Sisimanu",
-  ];
+  // Serialization (Object -> Map -> JSON String)
+  void serialize() {
+    UserModel user = UserModel(
+      id: '01',
+      fullName: 'Rohit Semriwal',
+      email: 'rohit@gmail.com',
+    );
 
-  // FIXED: Removed the trailing comma after 6.7 to prevent decoding crashes
-  String objToJson = '''{
-  "fullName": "duru",
-  "age": 21,
-  "married": false,
-  "height": 6.7
-}''';
+    Map userMap = user.toMap();
+    String jsonString = jsonEncode(userMap);
+    print(jsonString);
+  }
+
+  // Deserialization (JSON String -> Map -> Object)
+  void deserialize() {
+    String jsonString =
+        '{"id":"01","fullName":"Rohit Semriwal","email":"rohit@gmail.com"}';
+
+    Map decodedMap = jsonDecode(jsonString);
+    UserModel user = UserModel.fromMap(decodedMap);
+    print(user.fullName);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          // Added Center for clean visual presentation
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -45,7 +50,7 @@ class _HomeState extends State<Home> {
                 },
                 child: const Text("Json Decode"),
               ),
-              const SizedBox(width: 20), // Added spacing between buttons
+              const SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {
                   serialize();
@@ -80,29 +85,4 @@ class UserModel {
       email: map['email'] ?? '',
     );
   }
-}
-
-// Serialization (Object -> Map -> JSON String)
-void serialize() {
-  UserModel user = UserModel(
-    id: '01',
-    fullName: 'Rohit Semriwal',
-    email: 'rohit@gmail.com',
-  );
-
-  Map userMap = user.toMap();
-  String jsonString = jsonEncode(userMap);
-  print(
-    jsonString,
-  ); // Output: {"id":"01","fullName":"Rohit Semriwal","email":"rohit@gmail.com"}
-}
-
-// Deserialization (JSON String -> Map -> Object)
-void deserialize() {
-  String jsonString =
-      '{"id":"01","fullName":"Rohit Semriwal","email":"rohit@gmail.com"}';
-
-  Map decodedMap = jsonDecode(jsonString);
-  UserModel user = UserModel.fromMap(decodedMap);
-  print(user.fullName); // Output: Rohit Semriwal
 }
