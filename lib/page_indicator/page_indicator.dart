@@ -29,7 +29,9 @@ class Beginning extends StatefulWidget {
 }
 
 class _Beginning extends State<Beginning> {
+  //THIS CONTROLLER HELP TO TRACK WHICH PAGE ARE WE ON (THIS IS THE CONTROLLER OF -PAGE INDICATOR AND SMOOTH PAGE INDICATOR)
   PageController _control = PageController();
+  //THIS HELP TO TRACK THE WHERE ARE WE AND CAN USE THIS VARIABLE TO SHOW IN THE TEXT WHERE INDEX OF PAGE WE ARE !!
   int _currentPage = 0;
 
   @override
@@ -39,6 +41,8 @@ class _Beginning extends State<Beginning> {
         padding: const EdgeInsets.all(28.0),
         child: Column(
           children: [
+
+            //THIS HELP US TO JUMP TO THE LAST PAGE 
             TextButton(
               onPressed: () {
                 _control.jumpToPage(4);
@@ -48,10 +52,14 @@ class _Beginning extends State<Beginning> {
                 style: TextStyle(color: Colors.white70),
               ),
             ),
+
+
             Expanded(
               child: PageView(
                 controller: _control,
                 onPageChanged: (index) {
+                  //THIS HELP US TO UNDERSTAND THE PAGE HAS BEEN CHANGED OR 
+                  //NOT IF CHANGED THE _currentPAGE GET UPDATED 
                   setState(() {
                     _currentPage = index;
                   });
@@ -68,6 +76,7 @@ class _Beginning extends State<Beginning> {
             ),
             SizedBox(height: 20),
 
+            // THIS WIDGETS HELP TO SHOW THE PAGE INDICATOR IN ANIMATION
             SmoothPageIndicator(
               controller: _control,
               count: 5,
@@ -87,6 +96,9 @@ class _Beginning extends State<Beginning> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
+                  //THIS IF FUNCTION HELPS US TO SHOW ONLY 
+                  //THE BACK BUTTON IF THE PAGE LIES ON PAGE TWO 
                   if (_currentPage > 0)
                     TextButton(
                       onPressed: () {
@@ -100,17 +112,26 @@ class _Beginning extends State<Beginning> {
                   else
                     const SizedBox(width: 60),
 
+                    
                   ElevatedButton(
                     onPressed: () {
                       if (_currentPage == 4) {
+
+                        //HERE TO APPLY TO TAKE US TO NEW LANGING PAGE
+                        //HERE WE NEED TO APPLY THE NEW LOGIC LIKE NAVIAGATION POP
                         debugPrint("Finished");
                       } else {
+
+                        //THIS BUTTON IS TO TAKE US TO NEXT PAGE 
                         _control.nextPage(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                         );
                       }
                     },
+
+                    //THIS HELP US TO SHOW WHICH TEXT TO SHOW IN THE BUTTON IF 
+                    //THE LAST PAGE THEN SHOW "GET STARTED " OR SHOW THE "NEXT" TYPE SHIT TEXT
                     child: Text(_currentPage == 4 ? "Get Started" : "Next"),
                   ),
                 ],
