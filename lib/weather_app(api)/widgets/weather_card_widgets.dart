@@ -1,4 +1,4 @@
-import 'package:collection_of_widgets/weather_app/model/weather_model.dart';
+import 'package:collection_of_widgets/weather_app(api)/model/weather_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

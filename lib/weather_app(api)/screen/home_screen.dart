@@ -1,6 +1,6 @@
-import 'package:collection_of_widgets/weather_app/model/weather_model.dart';
-import 'package:collection_of_widgets/weather_app/services/weather_services.dart';
-import 'package:collection_of_widgets/weather_app/widgets/weather_card_widgets.dart';
+import 'package:collection_of_widgets/weather_app(api)/model/weather_model.dart';
+import 'package:collection_of_widgets/weather_app(api)/services/weather_services.dart';
+import 'package:collection_of_widgets/weather_app(api)/widgets/weather_card_widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
