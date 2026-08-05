@@ -1,0 +1,21 @@
+// ignore_for_file: strict_top_level_inference
+
+AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 70,
+        height: 35,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: _isOn ? Colors.green : Colors.grey[400],
+        ),
+        padding: const EdgeInsets.all(4),
+        alignment: _isOn ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          width: 27,
+          height: 27,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+          ),
+        ),
+          )
